@@ -40,7 +40,7 @@ export default {
     userId: parseInt(localStorage.getItem("userId")), // Needs to be parseInt for the auth process that compares UserId from the req.body and the one with the token
     boolPost: 1, 
     postContent: null,
-    postImage: null
+    imageUrl: null
     }
   },
   methods : {
@@ -81,7 +81,9 @@ export default {
             alert('Félicitations, votre post a été publié !');
             this.$emit('updatePost', true);
             document.getElementById('create-post').style.display='none';
-            this.boolPost=1;
+            this.boolPost = 1;
+            this.postContent = null;
+            this.imageUrl = null;
         })
         .catch( ()=> {
             alert('Oops, une erreur est survenue');

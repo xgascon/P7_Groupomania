@@ -1,23 +1,21 @@
 <template>
     <div>
-        <div v-for="comment in tableComments" :key="comment.id">
-            <div :id="'comment-creation'+postId" style="display:none">
-                <br>
+        <div :id="'comment-creation'+postId" style="display:none">
+            <br>
 
-                <label :for="'commentContent'+postId">Texte de votre commentaire : </label>
-                <textarea :id="'commentContent'+postId" rows="2" v-model="commentToPublish"  type="text" placeholder="Contenu de mon commentaire" class="text-left form-control" required>  
-                </textarea>
-                <br>
+            <label :for="'commentContent'+postId">Texte de votre commentaire : </label>
+            <textarea :id="'commentContent'+postId" rows="2" v-model="commentToPublish"  type="text" placeholder="Contenu de mon commentaire" class="text-left form-control" required>  
+            </textarea>
+            <br>
 
-                <label :for="'commentImage'+postId">Image : </label>
-                <p>
-                    <input :id="'commentImage'+postId" type="file" @change="commentImageToPublishUpload" class="input">
-                </p>
+            <label :for="'commentImage'+postId">Image : </label>
+            <p>
+                <input :id="'commentImage'+postId" type="file" @change="commentImageToPublishUpload" class="input">
+            </p>
 
-                <button @click="publishComment(postId)" class="btn font-italic toClick" type="submit">Publier ce commentaire</button>
-                <br>
+            <button @click="publishComment(postId)" class="btn font-italic toClick" type="submit">Publier ce commentaire</button>
+            <br>
 
-            </div>
         </div>
     </div>
 </template>
@@ -61,6 +59,8 @@ export default {
                 console.log(response); 
                 this.$emit('updateComment', true);
                 this.$emit('increaseCommentNumber', this.postId);
+                this.commentToPublish = null;
+                this.commentImageToPublish = null;
             })
             .catch( ()=> {
                 alert('Oops, une erreur est survenue');

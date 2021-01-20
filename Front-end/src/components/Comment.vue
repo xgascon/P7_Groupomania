@@ -99,9 +99,7 @@ export default {
         modifyComment (idCommentToModify, UserIdCommentToModify) {
             if(confirm("Vous vous apprêtez à modifier ce commentaire. Confirmez-vous la modification ?")) {
                 const formData = new FormData();
-                if(this.commentContentToModify) {
-                    formData.append('commentContent', this.commentContentToModify);
-                }
+                formData.append('commentContent', this.commentContentToModify);
                 if(this.commentImageToModify) {
                     formData.append('image', this.commentImageToModify);
                 }
