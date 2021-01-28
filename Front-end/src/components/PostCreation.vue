@@ -1,7 +1,7 @@
 <template>
 <div class="card cardGroupomania shadow my-4 py-4"> 
     <div class="card-text">
-        <button @click="cachePost('create-post')" class="btn toClick"> <h2 class="h5">Rédigez un post en cliquant ici !</h2></button>
+        <button @click="cacheDisplay('create-post')" class="btn toClick"> <h2 class="h5">Rédigez un post en cliquant ici !</h2></button>
         <div id="create-post" style="display:none">
             <form class="form-group text-left mx-5">
                 <!-- Post text content -->
@@ -38,7 +38,6 @@ export default {
   data() { 
     return {  
     userId: parseInt(localStorage.getItem("userId")), // Needs to be parseInt for the auth process that compares UserId from the req.body and the one with the token
-    boolPost: 1, 
     postContent: null,
     imageUrl: null
     }
@@ -49,14 +48,11 @@ export default {
         this.imageUrl = event.target.files[0];
     },
     // Function to display and hide an element
-    cachePost(id){
-        console.log()
-        if(this.boolPost==1){
+    cacheDisplay(id){
+        if(document.getElementById(id).style.display=='none'){
             document.getElementById(id).style.display='initial';
-            this.boolPost=0;
         } else {
             document.getElementById(id).style.display='none';
-            this.boolPost=1;
         }
     },
     // Send post to API
@@ -81,7 +77,6 @@ export default {
             alert('Félicitations, votre post a été publié !');
             this.$emit('updatePost', true);
             document.getElementById('create-post').style.display='none';
-            this.boolPost = 1;
             this.postContent = null;
             this.imageUrl = null;
         })

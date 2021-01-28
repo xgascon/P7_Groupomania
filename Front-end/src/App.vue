@@ -66,9 +66,10 @@ $cardGroupomania-bgColor:rgba(15, 73, 95, .95);
   text-align: center;
   // color: #2c3e50;
   color: white;
-  background: linear-gradient(rgba(0, 0, 0, 0.8),rgba(0,0,0,.5)), 
-      url('http://localhost:3000/images/social-network-illustration.jpg'),
-      no-repeat;
+  background: 
+      linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), 
+      url('http://localhost:3000/images/social-network-illustration.png')
+      repeat;
 }
 
 #nav {
@@ -90,6 +91,11 @@ $cardGroupomania-bgColor:rgba(15, 73, 95, .95);
     // color: #2c3e50;
     color: white;
   }
+}
+
+.welcomeText {
+  font-weight: bold;
+  text-shadow: $cardGroupomania-bgColor 1px 0 10px;
 }
 
 .toClick {

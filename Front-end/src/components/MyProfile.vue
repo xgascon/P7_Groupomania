@@ -12,7 +12,7 @@
                     <p>{{email}}</p>
                     <hr class="separationBar">
                     <div class="displayFlexSpacebetween align-center" v-if="userId === currentUserId || currentUserRole == 'admin'">
-                        <button @click="cache('modify-user'); getUser()" class="btn btn-warning py-0 mx-2"> 🖊️ </button> Modifier mon profil
+                        <button @click="cacheDisplay('modify-user'); getUser()" class="btn btn-warning py-0 mx-2"> 🖊️ </button> Modifier mon profil
                         <button @click="deleteProfile" id="contact_button-delete" class="btn btn-danger py-0 mx-2"> <strong> X </strong> </button> Supprimer mon profil
                     </div>
                 </div>
@@ -91,8 +91,7 @@ export default {
             password: null,
             border: null,
             userId: null, 
-            oldPassword: null,
-            bool: 1
+            oldPassword: null
         }
     },
     // Get all user's elements from API
@@ -121,13 +120,11 @@ export default {
         this.imageUrl = event.target.files[0];
         },
         // Function to display and hide an element
-        cache(id){
-            if(this.bool==1){
+        cacheDisplay(id){
+            if(document.getElementById(id).style.display=='none'){
                 document.getElementById(id).style.display='initial';
-                this.bool=0;
             } else {
                 document.getElementById(id).style.display='none';
-                this.bool=1;
             }
         },
         // Function to verify that email typo is correct
@@ -154,7 +151,6 @@ export default {
                 alert('Vos modifications sont bien enregistrées ! Connectez-vous pour accéder au réseau.');
                 this.getUser();
                 document.getElementById('modify-user').style.display='none';
-                this.bool=1;
             })
             .catch( ()=> {
                 alert('Oops, une erreur est survenue');

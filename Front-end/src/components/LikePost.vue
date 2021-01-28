@@ -7,7 +7,7 @@
         <button @click="likePost(postId, 'dislikeReaction')" v-else class="roundedBorders dislike-button btn">👎 {{postDislikeNumberChild}}</button>
         
         <!-- Details for Likes/Dislikes button -->
-        <button @click="cacheDetailsLikes('details-likes'+postId)" class="btn font-italic toClick m-2 p-0" type="submit"> {{postDislikeNumberChild + postLikeNumberChild}} réaction(s)... </button>
+        <button @click="cacheDisplay('details-likes'+postId)" class="btn font-italic toClick m-2 p-0" type="submit"> {{postDislikeNumberChild + postLikeNumberChild}} réaction(s)... </button>
     </div>
 </template>
 
@@ -26,7 +26,6 @@ export default {
   },
   data() { 
     return {  
-    boolLikes: 1,
     postCurrentUserLikeChild: this.postCurrentUserLike,
     postCurrentUserDislikeChild: this.postCurrentUserDislike,
     postLikeNumberChild: this.postLikeNumber,
@@ -34,13 +33,11 @@ export default {
     }
   },
   methods : {
-    cacheDetailsLikes(id){
-        if(this.boolLikes==1){
+    cacheDisplay(id){
+        if(document.getElementById(id).style.display=='none'){
             document.getElementById(id).style.display='initial';
-            this.boolLikes=0;
         } else {
             document.getElementById(id).style.display='none';
-            this.boolLikes=1;
         }
     },
     // Function to like one post sent to API

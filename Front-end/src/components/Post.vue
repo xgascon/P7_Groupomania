@@ -42,7 +42,6 @@
             :userId="userId"
             :role="role"
             :postContent="item.content"
-            @updateBoolModifyPost="updateBoolModifyPost"
             @updatePost="getAllPosts"
             />
             
@@ -60,7 +59,7 @@
                 />
                 <!-- Comments button -->
                 <div>
-                    <button @click="cacheCommentDisplay('comment-display'+item.id)" class="btn font-italic toClick"> <em :id="'commentNumber'+item.id">{{item.comments.length}}</em> Commentaires </button>
+                    <button @click="cacheDisplay('comment-display'+item.id)" class="btn font-italic toClick"> <em :id="'commentNumber'+item.id">{{item.comments.length}}</em> Commentaires </button>
                 </div>
             </div>
             
@@ -99,13 +98,13 @@
                 <div class="card-text inline displayFlexSpacebetween align-center">
                     <!-- Comment creation button -->
                     <div>        
-                        <button @click="cacheCommentCreation('comment-creation'+item.id)" class="btn font-italic toClick" type="submit">Rédiger un commentaire</button>
+                        <button @click="cacheDisplay('comment-creation'+item.id)" class="btn font-italic toClick" type="submit">Rédiger un commentaire</button>
                     </div>
                     <!-- Modify/Delete post buttons for the current user -->
                     <div v-if="item.userId === userId || role == 'admin'" class="displayFlexSpacebetween align-center">                    
-                        <button  @click="cacheModificationEnabledPost('modificationEnabledPost'+item.id)" class="roundedBorders btn postModificationEnabled mx-2 marginButtonModifyPostResponsive">...</button>
+                        <button  @click="cacheDisplay('modificationEnabledPost'+item.id)" class="roundedBorders btn postModificationEnabled mx-2 marginButtonModifyPostResponsive">...</button>
                         <div :id="'modificationEnabledPost'+item.id" class="displayFlexSpacebetween align-center" style="display:none">                      
-                            <button @click="cacheModifyPost('modify-post'+item.id)" class="btn btn-warning p-0 mx-2" type="submit"> 🖊️ </button>Modifier ce post
+                            <button @click="cacheDisplay('modify-post'+item.id)" class="btn btn-warning p-0 mx-2" type="submit"> 🖊️ </button>Modifier ce post
                             <button @click="deletePost(item.id, item.userId)" class="btn btn-danger py-0 px-1 mx-2" type="submit"> <strong> X </strong> </button>Supprimer ce post   
                         </div>
                     </div>
@@ -153,12 +152,6 @@ export default {
     userId: parseInt(localStorage.getItem("userId")), // Needs to be parseInt for the auth process that compares UserId from the req.body and the one with the token
     role: localStorage.getItem("role"),
     index: 0,
-    // Variables used in functions to hide or display elements
-    boolModifyPost: 1,
-    boolCommentDisplay: 1,
-    boolCommentCreation: 1,
-    boolModificationEnabledPost: 1,
-    // 
     previousPostContent: [], 
     tableLikes: [],
     tableComments: [],
@@ -180,7 +173,6 @@ export default {
     increaseCommentNumber(payload){
         document.getElementById('commentNumber'+payload).innerHTML++;
         document.getElementById('comment-creation'+payload).style.display='none';
-        this.boolCommentCreation=1;
     },
     getAllPosts(){
         axios.get(this.directionToUseForAxiosGetPost, {
@@ -246,43 +238,11 @@ export default {
         this.postsToSee += 5;
     },
     // Functions to display or hide elements  
-    cacheModifyPost(id){
-        if(this.boolModifyPost==1){
+    cacheDisplay(id){
+        if(document.getElementById(id).style.display=='none'){
             document.getElementById(id).style.display='initial';
-            this.boolModifyPost=0;
         } else {
             document.getElementById(id).style.display='none';
-            this.boolModifyPost=1;
-        }
-    },
-    updateBoolModifyPost(payload) {
-        this.boolModifyPost = payload.boolModifyPost;
-    },
-    cacheCommentDisplay(id){
-        if(this.boolCommentDisplay==1){
-            document.getElementById(id).style.display='initial';
-            this.boolCommentDisplay=0;
-        } else {
-            document.getElementById(id).style.display='none';
-            this.boolCommentDisplay=1;
-        }
-    },
-    cacheCommentCreation(id){
-        if(this.boolCommentCreation==1){
-            document.getElementById(id).style.display='initial';
-            this.boolCommentCreation=0;
-        } else {
-            document.getElementById(id).style.display='none';
-            this.boolCommentCreation=1;
-        }
-    },
-    cacheModificationEnabledPost(id){
-        if(this.boolModificationEnabledPost==1){
-            document.getElementById(id).style.display='flex';
-            this.boolModificationEnabledPost=0;
-        } else {
-            document.getElementById(id).style.display='none';
-            this.boolModificationEnabledPost=1;
         }
     },
     // Function to delete one post sent to API

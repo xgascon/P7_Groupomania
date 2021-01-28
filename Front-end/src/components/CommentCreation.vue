@@ -32,7 +32,6 @@ export default {
     },
     data() {
         return {
-            boolCommentCreation: 1,
             commentImageToPublish: null,
             commentToPublish: null
         }

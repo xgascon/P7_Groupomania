@@ -8,7 +8,7 @@
                             <em class="font-italic"> {{comment.user.firstName}} {{comment.user.lastName}} dit :  </em> 
                             <!-- Modify & Delete comment buttons for the current user -->
                             <div v-if="comment.userId == userId || role == 'admin'">
-                                <button @click="cacheCommentModification('comment-modification'+comment.id); duplicateModifyComment(comment.id)" class="btn btn-warning py-0 px-0"> 🖊️ </button> 
+                                <button @click="cacheDisplay('comment-modification'+comment.id); duplicateModifyComment(comment.id)" class="btn btn-warning py-0 px-0"> 🖊️ </button> 
                                 <button @click="deleteComment(comment.id, comment.userId)" class="btn btn-danger mx-1 py-0 px-1"> <strong> X </strong> </button> 
                             </div>
                         </em>
@@ -69,22 +69,17 @@ export default {
         tableComments: Array,
     },
     data() {
-        return {            
-            boolCommentModification: 1,
+        return {     
             commentContentToModify: null,
             commentImageToModify: null
         }
     },
     methods: {
-        cacheCommentModification (id) {
-            if(this.boolCommentModification == 1){
+        cacheDisplay(id){
+            if(document.getElementById(id).style.display=='none'){
                 document.getElementById(id).style.display='initial';
-                this.boolCommentModification = 0;
-                this.$emit('boolCommentModification', this.boolCommentModification);
             } else {
                 document.getElementById(id).style.display='none';
-                this.boolCommentModification = 1;
-                this.$emit('boolCommentModification', this.boolCommentModification);
             }
         },
         commentImageToModifyUpload (event) {
@@ -114,7 +109,6 @@ export default {
                 .then((response) => {
                     console.log(response);
                     document.getElementById('comment-modification'+idCommentToModify).style.display='none'; 
-                    this.boolCommentModification=1; 
                     this.$emit('updateComment', true);               
                 })
                 .catch( ()=> {

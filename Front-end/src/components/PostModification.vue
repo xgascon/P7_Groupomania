@@ -65,7 +65,6 @@ export default {
                     alert('Votre post a bien été modifié !');
                     this.$emit('updatePost',true);
                     document.getElementById('modify-post'+idPostToModify).style.display='none';
-                    this.$emit('updateBoolModifyPost', {boolModifyPost: 1});
                 })
                 .catch( ()=> {
                     alert('Oops, une erreur est survenue');
