@@ -6,6 +6,6 @@ To start this project, run "git clone https://github.com/xgascon/P7_Groupomania 
 
 Go to the folder "<folder_name>/Frontend" and run "npm install" and run "npm run serve". 
 <br>Go to the folder "<folder_name>/Backend" and run "npm install" and run "nodemon server".
-Keep those terminals running.
+<br>Keep those terminals running.
 
 Finally go to http://localhost:8080/
