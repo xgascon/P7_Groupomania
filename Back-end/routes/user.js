@@ -6,15 +6,10 @@ const multer = require('../middleware/multer-config');/* import code to manage i
 const adminVerif = require('../middleware/adminVerif');/* import code to authorize Admin and correct userID */
 
 router.post('/login', userCtrl.login);
-
 router.post('/signup', multer, userCtrl.signup);
-
 router.get('/:id', auth, userCtrl.getOneUser);
-
 router.get('/', auth, userCtrl.findAllUsers);
-
 router.put('/:id', auth, multer, adminVerif, userCtrl.updateUser);
-
 router.delete('/:id', adminVerif, userCtrl.deleteUser);
 
 module.exports = router;

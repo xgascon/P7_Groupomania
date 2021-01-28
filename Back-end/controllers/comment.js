@@ -35,7 +35,7 @@ exports.commentCreation = (req, res, next) => {
 exports.findAllComments = (req, res) => {
     
     Comments.findAll({
-        order: [['createdAt', "ASC"], ['updatedAt', "ASC"]],
+        order: [['createdAt', "ASC"], ['updatedAt', "ASC"]], /* Order the comments by creating date first in ascendent, and updating date in second */
         include: [Users, Posts]
     })    
     .then(data => {    
@@ -68,9 +68,10 @@ exports.deleteComment = (req, res) => {
     })
     .catch(error => res.status(500).json({ error }));      
 
+    // Function to delete a comment
     function deleteComment(commentId){
         Comments.destroy({
-        where: { id: commentId }
+        where: { id: commentId } /* find the comment by its id */
         })
         .then(num => {
             if (num == 1) {

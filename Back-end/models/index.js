@@ -19,11 +19,13 @@ const db = {};
 db.Sequelize = Sequelize;
 db.sequelize = sequelize;
 
+// Importing all the models
 db.user = require("./User.js")(sequelize, Sequelize);
 db.post = require("./Post.js")(sequelize, Sequelize);
 db.like = require("./Like.js")(sequelize, Sequelize);
 db.comment = require("./Comment.js")(sequelize, Sequelize);
 
+// Create relations between tables
 db.user.hasMany(db.post, { foreignKey: "userId" }, { onDelete: "cascade" });
 db.user.hasMany(db.like, { foreignKey: "userId" }, { onDelete: "cascade" });
 db.user.hasMany(db.comment, { foreignKey: "userId" }, { onDelete: "cascade" });
