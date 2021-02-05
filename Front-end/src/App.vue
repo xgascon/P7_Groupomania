@@ -56,7 +56,7 @@ $website-color: #4c8baf;
 $link-color-spec: darken($website-color, 30);
 $separationBar-bgColor:white;
 $likeReaction-color:rgb(47, 255, 47);
-$dislikeReaction-color:rgb(245, 131, 137);
+$dislikeReaction-color:rgb(255, 123, 129);
 $cardGroupomania-bgColor: darken($website-color, 20);
 // 
 
