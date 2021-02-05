@@ -1,7 +1,9 @@
 const bcrypt = require('bcrypt');/* package bcrypt to hash elements */
 const jwt = require('jsonwebtoken');/* jsonwebtoken plugin enabling to generate tokens for autentication purposes */
+const CryptoJS = require("crypto-js");/* plugin to crypt email*/
 const db = require("../models/index.js"); // models path depend on your structure
 const fs = require ('fs');/* package 'file system' to access, modify and delete files */
+const { Sequelize } = require('../models/index.js');
 const Users = db.user;
 
 // Signing up in controller
@@ -29,7 +31,7 @@ exports.signup = (req, res) => {
       const user = {
         firstName: req.body.firstName,
         lastName: req.body.lastName,
-        email: req.body.email,
+        email: CryptoJS.HmacSHA1(req.body.email, "Key").toString(), /* email Encryption */
         password: hash,
         role: role_user,
         imageUrl: req.body.imageUrl
@@ -51,8 +53,13 @@ exports.signup = (req, res) => {
 
 // Logging in controller
 exports.login = (req, res, next) => {
+  var emailUserConnect = CryptoJS.HmacSHA1(req.body.email, "Key").toString(); /* email encryption to compare with email in DBase */
 
-  Users.findOne({ where: { email: req.body.email }})/* looking for an email in database that would match the email logged in */
+  Users.findOne({
+    where: {        
+      email:[emailUserConnect, req.body.email]        
+    }    
+  })/* looking for an email in database that would match the email logged in */
     .then(user => {
       if (!user) {
         return res.status(401).json({ message: "Utilisateur non trouvé !" }); 
