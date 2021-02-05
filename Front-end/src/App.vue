@@ -53,7 +53,7 @@ export default {
 
 // Definition of Sass variables
 $website-color: #4c8baf;
-$link-color-spec: darken($website-color, 30);
+$link-color-spec: yellow;
 $separationBar-bgColor:white;
 $likeReaction-color:rgb(47, 255, 47);
 $dislikeReaction-color:rgb(255, 123, 129);
