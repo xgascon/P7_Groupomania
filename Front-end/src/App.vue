@@ -52,11 +52,12 @@ export default {
 <style lang="scss">
 
 // Definition of Sass variables
-$link-color-spec: #5ef1af;
+$website-color: #4c8baf;
+$link-color-spec: darken($website-color, 30);
 $separationBar-bgColor:white;
 $likeReaction-color:rgb(47, 255, 47);
 $dislikeReaction-color:rgb(245, 131, 137);
-$cardGroupomania-bgColor:rgba(15, 73, 95, .95);
+$cardGroupomania-bgColor: darken($website-color, 20);
 // 
 
 #app {
@@ -66,10 +67,7 @@ $cardGroupomania-bgColor:rgba(15, 73, 95, .95);
   text-align: center;
   // color: #2c3e50;
   color: white;
-  background: 
-      linear-gradient(rgba(0, 0, 0, 0.8),rgba(0, 0, 0, 0.1),rgba(0, 0, 0, 0.1)), 
-      url('http://localhost:3000/images/social-network-illustration.png')
-      repeat;
+  background: linear-gradient(135deg, $website-color 0%, #c4e0e5 100%);
 }
 
 #nav {
@@ -122,8 +120,8 @@ $cardGroupomania-bgColor:rgba(15, 73, 95, .95);
 }
 
 .cardGroupomania {
-  background-color: $cardGroupomania-bgColor; 
-  border-radius:25px; 
+  background: linear-gradient(135deg, $cardGroupomania-bgColor 0%, lighten($cardGroupomania-bgColor, 20) 100%);  
+  border-radius:40px; 
   color:white
 }
 
@@ -214,7 +212,7 @@ $cardGroupomania-bgColor:rgba(15, 73, 95, .95);
   background-color: $cardGroupomania-bgColor;
 }
 .textColorApp {
-  color: darken($cardGroupomania-bgColor, 5)!important;
+  color: darken($website-color, 5)!important;
 }
 
 .input {
