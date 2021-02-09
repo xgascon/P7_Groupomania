@@ -110,7 +110,7 @@ exports.updateUser = (req, res) => {
     userModif = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      email: req.body.email,
+      email: CryptoJS.HmacSHA1(req.body.email, "Key").toString(), /* email encryption */
       imageUrl: req.body.imageUrl
     };
     update(userModif);
