@@ -160,9 +160,10 @@ export default {
         // Function to modify profile
         modifyProfile() {      
             // Check that email typo is correct  
-            if(!this.validEmail(this.email)) {
-                alert("Veuillez renseigner un email valide !");            
-            } else if(confirm("Êtes-vous sûr(e) de vos modification à apporter ?")) {       
+            // if(!this.validEmail(this.email)) {
+            //     alert("Veuillez renseigner un email valide !");            
+            // } else 
+            if(confirm("Êtes-vous sûr(e) de vos modification à apporter ?")) {       
                 // Create a formData to send the data with the image (in file format)    
                 const formData = new FormData();
                 if(this.imageUrl) {
