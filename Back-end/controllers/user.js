@@ -64,7 +64,7 @@ exports.login = (req, res, next) => {
       if (!user) {
         return res.status(401).json({ message: "Utilisateur non trouvé !" }); 
       }
-      bcrypt.compare(req.body.password, user.password)/* if email matches one in database, we compare the password looged in with the one linked to the user */
+      bcrypt.compare(req.body.password, user.password)/* if email matches one in database, we compare the password logged in with the one linked to the user */
         .then(valid => {
           if (!valid) {
             return res.status(401).json({ message: "Mot de passe incorrect !" });            
@@ -110,14 +110,14 @@ exports.updateUser = (req, res) => {
     userModif = {
       firstName: req.body.firstName,
       lastName: req.body.lastName,
-      email: CryptoJS.HmacSHA1(req.body.email, "Key").toString(), /* email encryption */
+      // email: CryptoJS.HmacSHA1(req.body.email, "Key").toString(), /* email encryption */
       imageUrl: req.body.imageUrl
     };
     update(userModif);
   } else {
     Users.findOne({ where: { id: id } })/* looking for a userId in database that would match the userId logged in */
     .then(user => {
-      bcrypt.compare(req.body.oldPassword, user.password)/* if email matches one in database, we compare the password looged in with the one linked to the user */
+      bcrypt.compare(req.body.oldPassword, user.password)/* if id matches one in database, we compare the password logged in with the one linked to the user */
         .then(valid => {
           if (!valid) {
             return res.status(401).json({ error: 'Mot de passe incorrect !' });
@@ -127,7 +127,7 @@ exports.updateUser = (req, res) => {
             userModif =  {
               firstName: req.body.firstName,
               lastName: req.body.lastName,
-              email: req.body.email,
+              // email: req.body.email,
               imageUrl: req.body.imageUrl,
               password: hash
             };
