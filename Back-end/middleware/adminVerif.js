@@ -9,7 +9,7 @@ module.exports = (req, res, next) => {
     const userId = decodedToken.userId;/* get the userId linked to the token */
     Users.findOne({ where: { id: userId }})
     .then(user => {
-      if(user.email == 'candice.paillard@groupomania.com' || req.body.userId && parseInt(req.body.userId) == userId) {
+      if(user.role == 'admin' || req.body.userId && parseInt(req.body.userId) == userId) {
         next();/* go to next function if valid user ID (Admin or the user that has created the post, comment or the user profile) */
       } else {
         throw 'Invalid user ID';
