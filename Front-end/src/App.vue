@@ -68,6 +68,7 @@ $cardGroupomania-bgColor: darken($website-color, 20);
   // color: #2c3e50;
   color: white;
   background: linear-gradient(135deg, $website-color 0%, #c4e0e5 100%);
+  padding-bottom: 2em;
 }
 
 #nav {
@@ -102,6 +103,10 @@ $cardGroupomania-bgColor: darken($website-color, 20);
         color: white;
         text-decoration: underline;
     }
+}
+
+.connexion {
+  padding-bottom: 9em;
 }
 
 .form-control {

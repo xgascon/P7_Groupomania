@@ -9,7 +9,7 @@
                     <p>Mon numéro d'identifiant : {{ userId }}</p>                                                 
                     <p>{{firstName}} {{lastName}}</p>
                     <p>Rôle : {{role}}</p>
-                    <p>{{email}}</p>
+                    <!-- <p>{{email}}</p> -->
                     <hr class="separationBar">
                     <div class="displayFlexSpacebetween align-center" v-if="userId === currentUserId || currentUserRole == 'admin'">
                         <button @click="cacheDisplay('modify-user'); getUser()" class="btn btn-warning py-0 mx-2"> 🖊️ </button> Modifier mon profil
@@ -47,10 +47,10 @@
                 </p>
                 <br>
 
-                <label for="email-inscription">Adresse e-mail : {{email}} </label>
+                <!-- <label for="email-inscription">Adresse e-mail : {{email}} </label>
                 <p class="font-italic font-weight-light text-white-50"> Modifiez ci-dessous votre Adresse email</p>
                 <input id="email-inscription" v-bind:style="border" v-model="email" type="email" placeholder="email@gmail.com" class="form-control" required>  
-                <br>
+                <br> -->
 
                 <label for="mpasse-inscription">Mot de passe : </label>
                 <p class="font-italic font-weight-light text-white-50"> Veuillez d'abord renseigner votre ancien mot de passe pour le modifier ci-dessous</p>
@@ -86,7 +86,7 @@ export default {
             firstName: null,
             lastName: null,
             imageUrl: null,
-            email: null,
+            // email: null,
             role: null,
             password: null,
             border: null,
@@ -110,7 +110,7 @@ export default {
                 this.firstName = response.data.firstName,
                 this.lastName = response.data.lastName,
                 this.imageUrl = response.data.imageUrl,
-                this.email = response.data.email,
+                // this.email = response.data.email,
                 this.role = response.data.role
             })
             .catch(error => console.log(error))
@@ -170,7 +170,7 @@ export default {
                 }
                 formData.append('firstName', this.firstName);
                 formData.append('lastName', this.lastName);
-                formData.append('email', this.email);
+                // formData.append('email', this.email);
                 formData.append('userId', this.userId);/* for middleware adminVerif, to check that userId who owns his profile is the same that modifies */
                 // Send the data to API if there is no new password to send
                 if(this.password==null || this.password=='' ) { 
