@@ -18,6 +18,7 @@ Go to the folder "<folder_name>/Front-end" and run "npm install" and run "npm ru
 
   2/ Run "npm install" and run "nodemon server".
 
+***
 Keep those terminals running.
 
 Finally go to http://localhost:8080/
