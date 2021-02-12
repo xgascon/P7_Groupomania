@@ -4,9 +4,17 @@ This project uses for its Frontend : Node.js with Express, a MySql server and th
 
 To start this project, run "git clone https://github.com/xgascon/P7_Groupomania <folder_name>"
 
-<mark> To launch the Front-end that runs on the localhost <mark>
+**To launch the Front-end that runs on the localhost 8080 : **
+  
 Go to the folder "<folder_name>/Front-end" and run "npm install" and run "npm run serve". 
-<br>Go to the folder "<folder_name>/Back-end" and add a file '.env' run "npm install" and run "nodemon server".
+
+**To launch the Back-end that runs on the localhost 8080 : **
+
+<br>Go to the folder "<folder_name>/Back-end" and create a file '.env' in which you write :
+
+
+run "npm install" and run "nodemon server".
+
 <br>Keep those terminals running.
 
 Finally go to http://localhost:8080/
