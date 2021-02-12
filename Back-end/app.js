@@ -32,6 +32,7 @@ app.use(bodyParser.json());/* extracting JSON objects from queries */
 // parse requests of content-type - application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
+
 const db = require("./models/index.js");
 db.sequelize.sync();
 
