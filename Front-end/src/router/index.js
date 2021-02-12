@@ -62,9 +62,12 @@ router.beforeEach((to, from, next) => {
     } else {
       next({name: 'Connexion'})
     }
+  } else if (localStorage.getItem('token')) {
+    next({name: 'Groupomania'})
   } else {
     next()
   }
 })
+
 
 export default router
