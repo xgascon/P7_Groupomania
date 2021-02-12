@@ -8,7 +8,7 @@ To start this project, run "git clone https://github.com/xgascon/P7_Groupomania 
   
 Go to the folder "<folder_name>/Front-end" and run "npm install" and run "npm run serve". 
 
-## To launch the Back-end that runs on the localhost 3000 : 
+## To launch the Back-end that uses MySQL (prerequesite) and runs on the localhost 3000 : 
 
   1/ Go to the folder "<folder_name>/Back-end" and create a file '.env' in which you write :
 <br>DB_HOST=(ex.localhost)
